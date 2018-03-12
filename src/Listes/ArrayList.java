@@ -12,7 +12,10 @@ public class ArrayList<T> {
         }
     }
 
+    public void add(T element) {
+
+    }
     public void add(int index, T element) {
-        if ()
+
     }
 }

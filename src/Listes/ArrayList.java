@@ -1,9 +1,8 @@
 package Listes;
-import java.util.*;
 
-public class ArrayList<T> {
+public class ArrayList<T> implements List {
     private T[] tableau;
-    private int taille;
+    private int taille, nbObjets = 0;
 
     public ArrayList(int taille) {
         if (taille > 0) {
@@ -12,10 +11,71 @@ public class ArrayList<T> {
         }
     }
 
+
     public void add(T element) {
+        if (nbObjets >= taille) {
+            if (taille <= 0) taille = 1;
+            else taille *= 2;
+            T[] tabTemp = (T[]) new Object[taille];
+            tabTemp = tableau.clone();
+            tableau = tabTemp;
+        }
 
+        tableau[nbObjets] = element;
+        nbObjets++;
     }
-    public void add(int index, T element) {
 
+    public void add(int index, T element) {
+        if (taille <= 0) taille = 1;
+
+        if (index < taille && index >= 0) {
+            if (nbObjets >= taille - 2) {
+                taille *= 2;
+                T[] tabTemp = (T[]) new Object[taille];
+                tabTemp = tableau.clone();
+                tableau = tabTemp;
+            }
+
+            for (int i = nbObjets; i >= index; i--)
+                tableau[i - 1] = tableau[i - 2];
+
+            tableau[index] = element;
+            nbObjets++;
+            taille++;
+        }
+    }
+
+
+    public void set(int index, T element) {
+        if (index >= 0 && index < taille)
+            tableau[index] = element;
+    }
+
+
+    public T get(int index) {
+        if (index >= 0 && index < nbObjets) return tableau[index];
+        else return null;
+    }
+
+
+    public void remove(int index) {
+        if (index >= 0 && index < taille) {
+            for (int i = index; i < nbObjets; i++) {
+                tableau[i] = tableau[i + 1];
+            }
+            nbObjets--;
+        }
+    }
+
+
+    public void clear() {
+        taille = 0;
+        nbObjets = 0;
+    }
+
+
+    public int size() {
+        if (tableau != null) return nbObjets;
+        else return 0;
     }
 }

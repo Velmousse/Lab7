@@ -8,13 +8,9 @@ public class LinkedList<T> implements List {
 
     public LinkedList(int taille) {
         LinkedList.taille = taille;
-
+        if (position) next.add(null);
     }
 
-
-    private void add(int position) {
-
-    }
 
     public void add(T element) {
         content = element;

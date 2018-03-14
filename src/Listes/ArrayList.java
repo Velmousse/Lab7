@@ -32,7 +32,7 @@ public class ArrayList<T> implements List {
             if (nbObjets >= taille - 2) {
                 taille *= 2;
                 T[] tabTemp = (T[]) new Object[taille];
-                tabTemp = tableau.clone();
+                tabTemp = tableau.clone();  //Incertain
                 tableau = tabTemp;
             }
 

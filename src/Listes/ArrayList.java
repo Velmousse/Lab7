@@ -17,7 +17,8 @@ public class ArrayList<T> implements List {
             if (taille <= 0) taille = 1;
             else taille *= 2;
             T[] tabTemp = (T[]) new Object[taille];
-            tabTemp = tableau.clone();
+            for (int i = 0; i < nbObjets; i++)
+                tabTemp[i] = tableau[i];
             tableau = tabTemp;
         }
 
@@ -32,7 +33,8 @@ public class ArrayList<T> implements List {
             if (nbObjets >= taille - 2) {
                 taille *= 2;
                 T[] tabTemp = (T[]) new Object[taille];
-                tabTemp = tableau.clone();  //Incertain
+                for (int i = 0; i < nbObjets; i++)
+                    tabTemp[i] = tableau[i];
                 tableau = tabTemp;
             }
 

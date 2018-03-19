@@ -1,37 +1,59 @@
 package Listes;
 
 public class LinkedList<T> implements List {
-    private static int taille, nbObjects = 0;
+    private int nbObjects = 0;
     private int position = 0;
-    protected LinkedList<T> next = null;
-    private T content;
+    private Node<T> head, tail;
 
     public LinkedList(int taille) {
-        LinkedList.taille = taille;
-        if (position) next.add(null);
+        Node<T> next;
+        nbObjects = taille;
+        head = new Node<T>(null);
+        next = head.getNext();
+        for (int i = 1; i < nbObjects; i++) {
+            next = new Node<T>(null);
+            next = next.getNext();
+            if (i == nbObjects - 1)
+                tail = next;
+        }
     }
 
 
     public void add(T element) {
-        content = element;
+        Node<T> temp = new Node<T>(element);
         nbObjects++;
+        tail.setNext(temp);
+        tail = tail.getNext();
     }
 
     public void add(int index, T element) {
-
+        Node<T> temp = head;
+        if (index < nbObjects && nbObjects >= 0) {
+            for (int i = 0; i < index; i++)
+                temp = temp.getNext();
+            
+        }
     }
 
 
     public void set(int index, T element) {
-
+        Node<T> temp = head;
+        if (index < nbObjects && nbObjects >= 0) {
+            for (int i = 0; i < index; i++)
+                temp = temp.getNext();
+            temp.setContenu(element);
+        }
     }
 
 
     public T get(int index) {
-        if (index == taille - 1)
-            return content;
-        else
-            return next.get(index);
+        Node<T> temp = head;
+        if (index < nbObjects && nbObjects >= 0) {
+            for (int i = 0; i < index; i++)
+                temp = temp.getNext();
+            return temp.getContenu();
+        }
+        else return null;
     }
 
 
@@ -41,11 +63,11 @@ public class LinkedList<T> implements List {
 
 
     public void clear() {
-
+        nbObjects = 0;
     }
 
 
     public int size() {
-        return taille;
+        return nbObjects;
     }
 }

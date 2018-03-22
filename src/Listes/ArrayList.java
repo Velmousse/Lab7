@@ -38,8 +38,8 @@ public class ArrayList<T> implements List {
                 tableau = tabTemp;
             }
 
-            for (int i = nbObjets; i >= index; i--)
-                tableau[i - 1] = tableau[i - 2];
+            for (int i = nbObjets; i > index; i--)
+                tableau[i] = tableau[i - 1];
 
             tableau[index] = element;
             nbObjets++;
@@ -62,7 +62,7 @@ public class ArrayList<T> implements List {
 
     public void remove(int index) {
         if (index >= 0 && index < taille) {
-            for (int i = index; i < nbObjets; i++) {
+            for (int i = index; i < (nbObjets - 1); i++) {
                 tableau[i] = tableau[i + 1];
             }
             nbObjets--;

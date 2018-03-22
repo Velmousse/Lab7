@@ -1,21 +1,11 @@
 package Listes;
 
 public class LinkedList<T> implements List {
-    private int nbObjects = 0;
-    private int position = 0;
+    private int nbObjects = 2;
     private Node<T> head, tail;
 
-    public LinkedList(int taille) {
-        Node<T> next;
-        nbObjects = taille;
-        head = new Node<T>(null);
-        next = head.getNext();
-        for (int i = 1; i < nbObjects; i++) {
-            next = new Node<T>(null);
-            next = next.getNext();
-            if (i == nbObjects - 1)
-                tail = next;
-        }
+    public LinkedList() {
+        head.setNext(tail);
     }
 
 
@@ -29,9 +19,12 @@ public class LinkedList<T> implements List {
     public void add(int index, T element) {
         Node<T> temp = head;
         if (index < nbObjects && nbObjects >= 0) {
-            for (int i = 0; i < index; i++)
-                temp = temp.getNext();
-            
+            if (index != 0) {
+                for (int i = 1; i < index; i++)
+                    temp = temp.getNext();
+                temp.setNext((Listes.Node<T>) element);
+            }
+            //else head
         }
     }
 
@@ -39,8 +32,10 @@ public class LinkedList<T> implements List {
     public void set(int index, T element) {
         Node<T> temp = head;
         if (index < nbObjects && nbObjects >= 0) {
-            for (int i = 0; i < index; i++)
-                temp = temp.getNext();
+            if (index != 0) {
+                for (int i = 0; i < index; i++)
+                    temp = temp.getNext();
+            }
             temp.setContenu(element);
         }
     }
@@ -58,7 +53,12 @@ public class LinkedList<T> implements List {
 
 
     public void remove(int index) {
+        Node<T> temp = head;
+        if (index < nbObjects && index >= 0) {
+            for (int i = 1; i < index - 1; i++) {
 
+            }
+        }
     }
 
 

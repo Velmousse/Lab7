@@ -1,6 +1,6 @@
 package Listes;
 
-public class ArrayList<T> implements List {
+public class ArrayList<T> implements List<T> {
     private T[] tableau;
     private int taille, nbObjets = 0;
 

@@ -5,14 +5,13 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-
-class ArrayListTest {
-    private ArrayList<Integer> test;
+class LinkedListTest {
+    private LinkedList<Integer> test;
     private int taille = 3;
 
     @BeforeEach
     void setUp() {
-        test = new ArrayList<>(taille);
+        test = new LinkedList<>();
         for (int i = 0; i < taille; i++)
             test.add(i + 1);
     }
@@ -20,13 +19,16 @@ class ArrayListTest {
     @Test
     void add() {
         test.add(4);
-        assertEquals((Integer)4, test.get(3));
+        assertEquals((Integer) 4, test.get(3));
+        //Cette section est déjà majoritairement testée avec le setUp()
     }
 
     @Test
     void add1() {
-        test.add(0, 1);
-        assertEquals((Integer) 1,  test.get(0));
+        for (int i = 0; i < 2; i++){
+            test.add(i, 1);
+            assertEquals((Integer) 1, test.get(i));
+        }
     }
 
     @Test
@@ -39,8 +41,9 @@ class ArrayListTest {
 
     @Test
     void get() {
-        for (int i = 0; i < taille; i++)
-            assertEquals((Integer)(i + 1), test.get(i));
+        for (int i = 0; i < taille; i++) {
+            assertEquals((Integer) (i + 1), test.get(i));
+        }
     }
 
     @Test
@@ -59,4 +62,5 @@ class ArrayListTest {
     void size() {
         assertEquals( 3, test.size());
     }
+
 }

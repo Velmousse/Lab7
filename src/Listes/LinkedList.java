@@ -52,7 +52,7 @@ public class LinkedList<T> implements List<T> {
                 for (int i = 0; i < index; i++)
                     temp = temp.getNext();
             }
-            temp.setContenu(element);
+            head.setContenu(element);
         }
     }
 
